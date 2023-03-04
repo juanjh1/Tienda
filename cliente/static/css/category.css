@@ -1,0 +1,12 @@
+.list-group {
+    margin-bottom: 20px;
+  }
+  
+  .list-group-item.active {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  .card {
+    margin-bottom: 20px;
+  }

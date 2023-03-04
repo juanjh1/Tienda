@@ -1,0 +1,82 @@
+{% extends 'base_products.html' %}
+
+{%block title%} Detail product {%endblock%}
+
+{% block content %}
+
+<div class="container">
+  <div class="row justify-content-center mt-4">
+    <div class="col-lg-6">
+      <div class="card">
+        <img src="{{ product.image.url }}" class="card-img-top" alt="Product Image">
+        <div class="card-body">
+          <h5 class="card-title">{{ product.name }}</h5>
+          <hr>
+          <h6 class="card-title">stock: {{ product.cantidad}}</h6>
+          <div class="row px-3">
+            <div class="col-6">
+              <p class="mb-0"><strong>Colors:</strong></p>
+              {% for color in colores %}
+              <p class="mb-0">{{ color }}</p>
+              {% endfor %}
+            </div>
+            <div class="col-6">
+              <p class="mb-0"><strong>Sizes:</strong></p>
+              {% for talla in tallas %}
+              <p class="mb-0">{{ talla }}</p>
+              {% endfor %}
+            </div>
+          </div>
+          <hr>
+          <p class="card-text">{{ product.desc }}</p>
+          <hr>
+          <h5 class="card-subtitle mb-2 text-muted">
+            Price: ${{ product.price }}
+          </h5>
+          {% if user.id == user_created %}
+          <div class="btn-group" role="group">
+            <a href="{% url 'update_product' id=product.id %}" class="btn btn-primary">Update</a>
+            <a href="{% url 'delete_product' id=product.id %}" class="btn btn-danger">Delete</a>
+          </div>
+          {% else %}
+          <a href="{% url 'add_product' id=product.id %}" class="btn btn-primary">Add to Cart</a>
+          {% endif %}
+        </div>
+      </div>
+      <div class="card mt-4">
+        <div class="card-header">
+          <h5>Product Reviews</h5>
+        </div>
+        <div class="card-body">
+          {% for review in comments %}
+          <div class="mb-3">
+            <p class="mb-0">
+              <a href="{% url 'user_detail' id=review.user.id %}" class="text-decoration-none">{{ review.user }}</a>
+            </p>
+            <strong><p class="mb-0">{{ review.comment }}</p></strong>
+            <p class="mb-0"><small class="text-muted">{{ review.created_at }}</small></p>
+            <hr>
+          </div>
+          {% empty %}
+          <p class="text-muted">No reviews yet.</p>
+          {% endfor %}
+          {% if user.is_authenticated %}
+          <form action="{% url 'feedback' product.id %}" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="text">Leave a review:</label>
+              <textarea class="form-control" id="text" rows="3" name="text"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+          {% else %}
+          <div class="alert alert-info mt-3" role="alert">
+            You need to <a href="{% url 'login' %}" class="alert-link">login</a> to leave a review.
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}     

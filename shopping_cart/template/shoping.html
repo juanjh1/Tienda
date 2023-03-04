@@ -1,0 +1,46 @@
+{% extends 'base_products.html' %}
+{% load static %}
+{%block title%} shopping cart{%endblock%}
+{% block content %}
+  <div class="container">
+    <h1 class="my-4 cart-title">shopping cart</h1>
+    <div class="table-responsive">
+      <table class="table table-bordered cart-table">
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Amount</th>
+            <th>Unit price</th>
+            <th>Subtotal</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in items %}
+            <tr>
+              <td>{{ item.producto.name }}</td>
+              <td>{{ item.cantidad }}</td>
+              <td class="cart-price">${{ item.producto.price }}</td>
+              <td class="cart-subtotal">${{item.subtotal}}</td>
+              <td>
+               <form action="{% url  'delete_item' id=item.id %}" method="POST">
+                  {% csrf_token %}
+                  <button type="submit" class="btn btn-danger">Eliminate</button>
+                </form>
+              </td>
+            </tr>
+          {% empty %}
+            <tr>
+              <td colspan="5" class="text-center py-4">The shopping cart is empty</td>
+            </tr>
+          {% endfor %}
+          <tr>
+            <td colspan="3"></td>
+            <td class="cart-total-label"><strong>Total:</strong></td>
+            <td class="cart-total-price"><strong>${{total}}</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends 'base_products.html' %}
+
+{%block title%} Create product {%endblock%}
+
+{% load static %}
+{% block content %}
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-6">
+                <div class="card product-form">
+                  <h2 class="py-1 px-4"> Create your product</h2>
+                    <div class="card-body">
+                      
+                        <form method="post" enctype="multipart/form-data" action="{% url 'create' %}">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                {{ form.name.label_tag }}
+                                {{ form.name }}
+                            </div>
+                            <div class="form-group">
+                                {{ form.category.label_tag }}
+                                {{ form.category }}
+                            </div>
+                            <div class="form-group">
+                                {{ form.desc.label_tag }}
+                                {{ form.desc }}
+                            </div>
+                            <div class="form-group">
+                                {{ form.image.label_tag }}
+                                {{ form.image }}
+                            </div>
+                            <div class="form-group">
+                                {{ form.cantidad.label_tag }}
+                                {{ form.cantidad}}
+                            </div>
+                            <div class="form-group">
+                                {{ form.price.label_tag }}
+                                {{ form.price }}
+                            </div>
+                            <div class="form-group">
+                                {{ talla_color.as_p }}
+                            </div>
+                           
+                            <button type="submit" class="btn btn-primary">Save</button>
+                        </form>
+                        {% if form.errors %}
+              <div class="alert alert-danger" role="alert">
+                  <ul>
+                      {% for field in form %}
+                          {% for error in field.errors %}
+                              <li>{{ field.label }}: {{ error }}</li>
+                          {% endfor %}
+                      {% endfor %}
+                  </ul>
+              </div>
+{% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

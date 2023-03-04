@@ -1,0 +1,61 @@
+{% extends 'base_products.html' %}
+{% load static %}
+{%block title%} Add to cart{%endblock%}
+{% block content %}
+
+<div class="container">
+    <h1 class="my-4">Agregar producto al carrito</h1>
+    
+    <form method="POST" action="{% url 'add' id=product_add.id %}">
+      {% csrf_token %}
+      
+      <div class="form-group">
+        <label for="product-name">Nombre del producto</label>
+        <input type="text" class="form-control" id="product-name" name="product_name" value="{{product_add.name}}" readonly>
+      </div>
+      
+      <div class="form-group">
+        <label for="product-price">Precio del producto</label>
+        <input type="number" class="form-control" id="product-price" name="product_price" value="{{product_add.price}}" readonly>
+      </div>
+      
+      <div class="form-group">
+        <label for="product-quantity">Cantidad</label>
+        <input type="number" class="form-control" id="product-quantity" name="product_quantity" required>
+      </div>
+      
+      <div class="form-group">
+        {% for color in colors %}
+        <label>
+          <input type="radio" name="color" value="{{color.id}}" id="{{color.id}}" required>
+          {{color}}
+        </label>
+        {% endfor %}
+      </div>
+      
+      <div class="form-group">
+        {% for talla in tallas %}
+        <label>
+          <input type="radio" name="talla" value="{{talla.id}}" id="{{talla.id}}" required>
+          {{talla}}
+        </label>
+        {% endfor %}
+      </div>
+      
+      {%if product_add.cantidad != 0%}
+     
+      <button type="submit" class="btn btn-primary">Agregar al carrito</button>
+
+      {%else%}
+      <h2>Out</h2>
+      {% endif %}
+
+      
+    </form>
+     
+  </div>
+
+
+{% endblock %}
+
+      

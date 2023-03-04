@@ -1,0 +1,51 @@
+{% extends 'base_products.html' %}
+
+{%block title%} My products {%endblock%}
+{% block  content%}
+
+
+    <div class="container my-5">
+      <h1 class="text-center py-4">My products</h1>
+      
+      <div class="row">
+        {% for product in  products %}
+        <div class="col-md-4">
+          <div class="card">
+            <img src="{{product.image.url}}" class="card-img-top  "   alt="Producto 1" />
+            <div class="card-body">
+              <h5 class="card-title">{{product.name}}</h5>
+              <p class="card-text">
+                <strong><i>Category:</i> </strong> {{product.category}}
+              </p>
+              <p class="card-text">
+              <strong> <i> price: $</i></strong>{{product.price}}
+              </p>
+              
+              <a href="{% url 'detail_products' id=product.id %}" class="btn btn-primary">view details</a>
+              
+            </div>
+            </div>
+            </div>
+            {% endfor %}
+            </div>
+    
+    
+
+   
+            <script
+            src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"
+            ></script>
+            <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"
+            ></script>
+            <script
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"
+            ></script>
+
+{% endblock  %}

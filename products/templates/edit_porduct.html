@@ -1,0 +1,45 @@
+{% extends 'base_products.html' %}
+
+{%block title%} Edit product {%endblock%}
+
+{% load static %}
+{% block content %}
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-6">
+                <div class="card product-form">
+                  <h2 class="py-1 px-4"> update your product</h2>
+                    <div class="card-body">
+                      
+                        <form method="post" enctype="multipart/form-data" action="{% url 'update_product' id=product.id %}">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="id_name">Name:</label>
+                                <input type="text" name="name" class="form-control" id="id_name" value="{{product.name}}" readonly >
+                            </div>
+                            <div class="form-group">
+                                <label for="id_category">Category:</label>
+                                <input type="text" name="category" class="form-control" id="id_category" value="{{product.category}}" required readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="id_desc">Description:</label>
+                                <textarea name="desc" class="form-control" id="id_desc" value="{{product.desc}}" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="id_cantidad">Quantity:</label>
+                                <input type="number" name="cantidad" class="form-control" id="id_cantidad" value="{{product.cantidad}}" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="id_price">Price:</label>
+                                <input type="number" name="price" class="form-control" id="id_price" value="{{product.price}}" required>
+                            </div>
+                            
+                           
+                            <button type="submit" class="btn btn-primary">Save</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
