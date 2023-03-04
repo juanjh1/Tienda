@@ -10,7 +10,7 @@
  linux
      source venv/bin/activate
 windows 
-    env\Scripts\activate
+    venv\Scripts\activate
 ```
 
 - Crear ambiente virtual:
