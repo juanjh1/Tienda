@@ -41,5 +41,5 @@ windows
     USERDB = 'usuario de la base de datos'
     DBPASSWORD = 'contraseña'
     ALLOWED_HOSTS = ['*']
-     python manage.py runserver 
+    python manage.py runserver 
 ```
