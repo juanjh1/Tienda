@@ -38,9 +38,10 @@ windows
 
 - crear un settings.py:
  ```sh
-     bebe contener 
-     DEBUG = True
-    USERDB = 'usuario de la base de datos'
-    DBPASSWORD = 'contraseña'
-    ALLOWED_HOSTS = ['*']
+    Debe contener:
+    
+    - DEBUG = True
+    - USERDB = 'usuario de la base de datos'
+    - DBPASSWORD = 'contraseña'
+    - ALLOWED_HOSTS = ['*']
 ```
