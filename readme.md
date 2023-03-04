@@ -33,5 +33,13 @@ windows
 ```
 - Correr el sevidor  :
  ```sh
+ 
+ - crear un settings.py:
+ ```sh
+     bebe contener 
+     DEBUG = True
+    USERDB = 'usuario de la base de datos'
+    DBPASSWORD = 'contraseña'
+    ALLOWED_HOSTS = ['*']
      python manage.py runserver 
 ```
