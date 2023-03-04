@@ -1,0 +1,3 @@
+DEBUG = True
+USERDB = 'root'
+DBPASSWORD = '123456789'

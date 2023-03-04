@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 import os
 from pathlib import Path
+from local_senttings import DEBUG
+from local_senttings import USERDB
+from local_senttings import DBPASSWORD
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -23,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-j#9(ex+(wu_uzev%vod@!$!l44mml^)5nsahqyga1c@q4@2-&1"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = DEBUG
 
 ALLOWED_HOSTS = []
 
@@ -82,8 +85,8 @@ DATABASES = {
     'default': {
     'ENGINE': 'django.db.backends.mysql',
     'NAME': 'store',
-    'USER': 'root',
-    'PASSWORD': '123456789',
+    'USER': USERDB,
+    'PASSWORD': DBPASSWORD,
     'HOST': 'localhost',
     'PORT': '3306'
     }

@@ -10,7 +10,6 @@ from django.contrib import messages
 # Create your views here.
 def products (request):
 
-
     context = {
                'user': request.user, 
                'products':  models.Product.objects.all()
@@ -23,7 +22,6 @@ def products (request):
 
 def detail_product(request, id):
    
-
     product = models.Product.objects.filter(id=id).first()
 
     context= {
@@ -80,7 +78,7 @@ def create (request):
       
     return redirect('/')
     
-
+@login_required
 def my_products (request, id):
 
     
@@ -89,7 +87,7 @@ def my_products (request, id):
     return render(request, 'my_products.html',context)
 
 
-
+@login_required
 def delete_product(request , id):
 
     product = models.Product.objects.filter(id=id).first()
@@ -106,7 +104,7 @@ def delete_product(request , id):
         
     return redirect('/productos/')
 
-
+@login_required
 def update(request, id):
     product = models.Product.objects.filter(id=id).first()
 
