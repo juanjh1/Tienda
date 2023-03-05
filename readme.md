@@ -12,10 +12,14 @@
 windows 
     venv\Scripts\activate
 ```
-
-- Crear ambiente virtual:
+- crear un settings.py:
  ```sh
-     python3 -m venv venv
+    Debe contener:
+    
+    - DEBUG = True
+    - USERDB = 'usuario de la base de datos'
+    - DBPASSWORD = 'contraseña'
+    - ALLOWED_HOSTS = ['*']
 ```
 
 - Instala las dependencias:
@@ -32,15 +36,7 @@ windows
      python manage.py createsuperuser
 ```
 
-- crear un settings.py:
- ```sh
-    Debe contener:
-    
-    - DEBUG = True
-    - USERDB = 'usuario de la base de datos'
-    - DBPASSWORD = 'contraseña'
-    - ALLOWED_HOSTS = ['*']
-```
+
 - Correr el sevidor  :
  ```sh
      python manage.py runserver 
