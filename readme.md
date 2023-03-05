@@ -31,10 +31,6 @@ windows
  ```sh
      python manage.py createsuperuser
 ```
-- Correr el sevidor  :
- ```sh
-     python manage.py runserver 
-```
 
 - crear un settings.py:
  ```sh
@@ -45,3 +41,8 @@ windows
     - DBPASSWORD = 'contraseña'
     - ALLOWED_HOSTS = ['*']
 ```
+- Correr el sevidor  :
+ ```sh
+     python manage.py runserver 
+```
+
