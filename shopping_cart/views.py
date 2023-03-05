@@ -6,28 +6,38 @@ from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def car (request):
-    context={}
-    carrito = Carrito.objects.filter(usuario=request.user.id).first()
-    if carrito is not None:
+    user_car = Carrito.objects.filter(usuario=request.user.id).first()
+    if user_car is not None:
+        cantidad = request.POST['product_quantity']
+        precio  = request.POST['product_price']
+        talla = request.POST['talla']
+        color = request.POST['color']
 
-        items = ItemCarrito.objects.filter(carrito=carrito)
-        total = 0
-        for item in items:
+        product = Product.objects.filter(id=id).first()
+        talla = Talla.objects.filter(id=int(talla)).first()
+        color = Color.objects.filter(id=int(color)).first()
 
-            total += int(item.precio) *int(item.cantidad) 
+        print(talla, color)
+        if int(product.cantidad ) > int(cantidad) :
 
-        context={'items':items,
-                 'total':total}
-    
-        
-        return render(request, 'shoping.html',context )
-    
-      
+            ItemCarrito.objects.create(carrito=user_car, producto=product, cantidad=cantidad, precio = precio, talla=talla, color=color)
+
+            product.cantidad =  int(product.cantidad) - int(cantidad)
+            product.save()
+
+            messages.success(request, 'Item added successfully') 
+            
+            return redirect('/productos/')
+            
+        else: 
+            messages.error(request, 'Quantity not available') 
+            return redirect('/productos/')
     else:
          Carrito.objects.create(usuario=request.user)
 
-         return redirect('/shoping/')
+         messages.error(request, 'car created') 
 
+         return redirect('/shoping/')
 
 
 login_required
